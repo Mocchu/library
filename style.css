@@ -1,0 +1,36 @@
+body {
+	font-family: "Montserrat", sans-serif;
+	font-family: "Open Sans", sans-serif;
+	font-family: "Roboto", sans-serif;
+}
+
+.flex {
+	display: flex;
+}
+
+.hero,
+.form-bg {
+	height: 100svh;
+}
+
+.hero {
+	width: 41svw;
+	background-image: url(img/bg-dull-scaled.jpg);
+	background-position: 50% 40%;
+	background-size: auto;
+	background-repeat: no-repeat;
+
+	align-items: center;
+	justify-content: center;
+}
+
+.hero > h1 {
+	color: white;
+	font-size: 5rem;
+	font-weight: 700;
+}
+
+.form-bg {
+	flex: 1;
+	background-color: lightgray;
+}
