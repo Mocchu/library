@@ -1,7 +1,5 @@
 body {
-	font-family: "Montserrat", sans-serif;
-	font-family: "Open Sans", sans-serif;
-	font-family: "Roboto", sans-serif;
+	font-family: "Lato", sans-serif;
 }
 
 .flex {
@@ -13,24 +11,61 @@ body {
 	height: 100svh;
 }
 
-.hero {
-	width: 41svw;
-	background-image: url(img/bg-dull-scaled.jpg);
-	background-position: 50% 40%;
-	background-size: auto;
-	background-repeat: no-repeat;
-
-	align-items: center;
+.hero,
+.hero-text {
 	justify-content: center;
 }
 
-.hero > h1 {
+.hero {
+	position: relative;
+	width: 41svw;
+
+	background-image: url(img/bg.jpg);
+	background-position: 25% 65%;
+	background-size: auto;
+	background-repeat: no-repeat;
+}
+
+.hero-text {
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	position: absolute;
+	width: 100%;
+	top: 33%;
+	text-align: center;
+}
+
+.hero-text > h1 {
+	font-family: "Montserrat", sans-serif;
 	color: white;
-	font-size: 5rem;
-	font-weight: 700;
+	font-size: 8rem;
+	font-weight: 800;
+	text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.205);
+}
+
+.hero-text > p {
+	width: 60%;
+	color: white;
+	font-size: 2rem;
+	font-weight: 400;
+	text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.205);
 }
 
 .form-bg {
 	flex: 1;
+	justify-content: center;
+	align-items: center;
+
 	background-color: lightgray;
+	box-shadow: -5px 0 25px rgba(0, 0, 0, 0.205);
+	z-index: 1;
+}
+
+.form-card {
+	width: 60%;
+	height: 70%;
+	background-color: white;
+	border-radius: 2%;
+	box-shadow: 0 5px 25px rgba(0, 0, 0, 0.205);
 }
