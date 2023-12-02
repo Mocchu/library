@@ -1,5 +1,5 @@
 body {
-	font-family: "Lato", sans-serif;
+	font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .flex {
@@ -32,16 +32,21 @@ body {
 	gap: 1rem;
 	position: absolute;
 	width: 100%;
-	top: 33%;
+	top: 25%;
 	text-align: center;
 }
 
+.hero-text > img {
+	width: 15rem;
+	margin-bottom: 2rem;
+	filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.205));
+}
+
 .hero-text > h1 {
-	font-family: "Montserrat", sans-serif;
 	color: white;
 	font-size: 8rem;
-	font-weight: 800;
-	text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.205);
+	font-weight: 700;
+	text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.205);
 }
 
 .hero-text > p {
@@ -49,7 +54,7 @@ body {
 	color: white;
 	font-size: 2rem;
 	font-weight: 400;
-	text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.205);
+	text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.205);
 }
 
 .form-bg {

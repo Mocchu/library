@@ -1,2 +1,3 @@
 # signup-form
-Signup form created using HTML, CSS &amp; Javascript
+
+Signup form created using HTML, CSS &amp; JS
