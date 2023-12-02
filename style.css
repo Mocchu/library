@@ -1,11 +1,14 @@
+/* General styling */
 body {
 	font-family: "Segoe UI", Arial, sans-serif;
+	color: rgb(51, 51, 51);
 }
 
 .flex {
 	display: flex;
 }
 
+/* Left side hero */
 .hero,
 .form-bg {
 	height: 100svh;
@@ -18,7 +21,7 @@ body {
 
 .hero {
 	position: relative;
-	width: 41svw;
+	width: 40svw;
 
 	background-image: url(img/bg.jpg);
 	background-position: 25% 65%;
@@ -27,6 +30,7 @@ body {
 }
 
 .hero-text {
+	color: rgb(255, 255, 255);
 	flex-direction: column;
 	align-items: center;
 	gap: 1rem;
@@ -39,38 +43,88 @@ body {
 .hero-text > img {
 	width: 15rem;
 	margin-bottom: 2rem;
-	filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.205));
+	filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.205)) saturate(95%);
 }
 
 .hero-text > h1 {
-	color: white;
 	font-size: 8rem;
 	font-weight: 700;
 	text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.205);
 }
 
 .hero-text > p {
-	width: 60%;
-	color: white;
 	font-size: 2rem;
 	font-weight: 400;
 	text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.205);
 }
 
+.photo-credit {
+	justify-content: start;
+	position: absolute;
+	top: 98%;
+}
+
+.photo-credit,
+.photo-credit > * {
+	font-size: 1.5rem;
+	color: rgba(255, 255, 255, 0.507);
+}
+
+/* Right side hero */
 .form-bg {
 	flex: 1;
 	justify-content: center;
 	align-items: center;
 
-	background-color: lightgray;
+	background-color: rgb(235, 235, 235);
 	box-shadow: -5px 0 25px rgba(0, 0, 0, 0.205);
 	z-index: 1;
 }
 
 .form-card {
-	width: 60%;
-	height: 70%;
+	width: max(50%, 50rem);
+	height: max(70%, 70rem);
 	background-color: white;
 	border-radius: 2%;
 	box-shadow: 0 5px 25px rgba(0, 0, 0, 0.205);
+
+	padding: 10rem;
+}
+
+/* form */
+.form-card,
+.form-card ul,
+.form-card li {
+	display: flex;
+	flex-direction: column;
+}
+
+.form-card > h1 {
+	font-size: 4.5rem;
+	font-weight: 700;
+	margin-bottom: 4rem;
+}
+
+.form-card ul {
+	gap: 4rem;
+}
+
+.form-card label {
+	font-size: 2rem;
+	font-weight: 600;
+	padding-bottom: 1rem;
+}
+
+.form-card input {
+	font-size: 2rem;
+	border-radius: 0.4rem;
+	padding: 1rem;
+}
+
+.form-card input[type="submit"] {
+	width: 35%;
+	color: white;
+	background-color: rgb(0, 124, 207);
+	border: none;
+	padding: 1.3rem 0;
 }
