@@ -4,6 +4,11 @@ body {
 	color: rgb(51, 51, 51);
 }
 
+.form-bg,
+.hero {
+	height: 100svh;
+}
+
 .flex {
 	display: flex;
 }
@@ -14,11 +19,6 @@ a:visited {
 
 /* Left side hero */
 .hero,
-.form-bg {
-	height: 100svh;
-}
-
-.hero,
 .hero-text {
 	justify-content: center;
 }
@@ -28,8 +28,7 @@ a:visited {
 	width: 40svw;
 
 	background-image: url(img/bg.jpg);
-	background-position: 25% 65%;
-	background-size: auto;
+	background-position: 40% 68%;
 	background-repeat: no-repeat;
 }
 
@@ -45,33 +44,31 @@ a:visited {
 }
 
 .hero-text > img {
-	width: 15rem;
+	width: 7.5rem;
 	margin-bottom: 2rem;
 	filter: drop-shadow(0 9px 3px rgba(0, 0, 0, 0.205)) saturate(95%);
 }
 
 .hero-text > h1 {
-	font-size: 8rem;
+	font-size: 4rem;
 	font-weight: 700;
 	text-shadow: 0 6px 8px rgba(0, 0, 0, 0.205);
 }
 
 .hero-text > p {
-	font-size: 2rem;
 	font-weight: 400;
 	text-shadow: 0 6px 5px rgba(0, 0, 0, 0.205);
 }
 
 .photo-credit {
-	justify-content: start;
 	position: absolute;
-	top: 98%;
+	top: 98svh;
 }
 
 .photo-credit,
 .photo-credit > * {
-	font-size: 1.5rem;
-	color: rgba(255, 255, 255, 0.507);
+	font-size: 0.75rem;
+	color: rgba(255, 255, 255, 0.664);
 }
 
 /* Right side hero */
@@ -79,6 +76,7 @@ a:visited {
 	flex: 1;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 
 	background-color: rgb(235, 235, 235);
 	box-shadow: -5px 0 25px rgba(0, 0, 0, 0.205);
@@ -86,14 +84,12 @@ a:visited {
 }
 
 .form-card {
-	width: max(50%, 50rem);
-	height: max(70%, 70rem);
+	width: 50%;
 	background-color: white;
 	border-radius: 2%;
 	box-shadow: 0 5px 25px rgba(0, 0, 0, 0.205);
 
-	margin-top: 5rem;
-	padding: 10rem;
+	padding: 5rem 5rem;
 }
 
 /* form */
@@ -105,33 +101,38 @@ a:visited {
 }
 
 .form-card > h1 {
-	font-size: 4.5rem;
+	font-size: 2.4rem;
 	font-weight: 700;
-	margin-bottom: 4rem;
+	margin-bottom: 2rem;
 }
 
 .form-card ul {
-	gap: 4rem;
+	gap: 1.25rem;
 }
 
 .form-card label {
-	font-size: 2rem;
 	font-weight: 600;
-	padding-bottom: 1rem;
+	padding-bottom: 0.7rem;
+	color: rgb(61, 61, 61);
 }
 
 .form-card input {
-	font-size: 2rem;
+	font-size: 0.9rem;
 	border-radius: 0.4rem;
-	padding: 1rem;
+	padding: 0.5rem;
+}
+
+.buttons {
+	text-align: center;
 }
 
 .form-card input[type="submit"] {
-	width: 35%;
 	color: white;
 	background-color: rgb(0, 124, 207);
 	border: none;
-	padding: 1.3rem 0;
+	width: 100%;
+	padding: 1rem 3rem;
+	margin-top: 2rem;
 }
 
 .form-card input[type="submit"]:hover {
@@ -139,8 +140,8 @@ a:visited {
 }
 
 .form-card .login {
-	padding-top: 2rem;
-	font-size: 1.8rem;
+	padding-top: 1rem;
+	font-size: 0.9rem;
 	font-weight: 400;
 }
 
@@ -148,14 +149,4 @@ a:visited {
 	text-decoration: none;
 	font-weight: 600;
 	color: rgb(0, 138, 230);
-}
-
-/* Footer */
-footer {
-	padding-top: 4rem;
-}
-
-footer * {
-	font-size: 2rem;
-	color: rgba(0, 0, 0, 0.507);
 }
