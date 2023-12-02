@@ -31,6 +31,8 @@
 								type="text"
 								id="first-name"
 								name="first-name"
+								autocomplete="given-name"
+								placeholder="John"
 								required
 							/>
 						</li>
@@ -40,6 +42,8 @@
 								type="text"
 								id="last-name"
 								name="last-name"
+								autocomplete="family-name"
+								placeholder="Doe"
 								required
 							/>
 						</li>
@@ -49,16 +53,31 @@
 								type="email"
 								id="email"
 								name="email"
+								autocomplete="email"
+								placeholder="example@email.com"
 								required
 							/>
 						</li>
 						<li>
 							<label for="tel">Phone number</label>
-							<input type="tel" id="tel" name="tel" required />
+							<input
+								type="tel"
+								id="tel"
+								name="tel"
+								autocomplete="tel"
+								placeholder="1234567890"
+								required
+							/>
 						</li>
 						<li>
 							<label for="pw">Password</label>
-							<input type="password" id="pw" name="pw" required />
+							<input
+								type="password"
+								id="pw"
+								name="pw"
+								placeholder="supersecurepassword"
+								required
+							/>
 						</li>
 						<li>
 							<label for="pw2">Confirm password</label>
@@ -66,19 +85,29 @@
 								type="password"
 								id="pw2"
 								name="pw2"
+								placeholder="supersecurepassword"
 								required
 							/>
 						</li>
 					</ul>
 
 					<div class="buttons">
-						<input type="submit" value="Create account" />
+						<input
+							type="submit"
+							value="Create account"
+							class="submit"
+						/>
 						<p class="login">
 							Already have an account? <a href="#">Login</a>
 						</p>
 					</div>
 				</form>
 			</div>
+			<footer>
+				<a href="https://github.com/Mocchu/signup-form"
+					>https://github.com/Mocchu/signup-form</a
+				>
+			</footer>
 		</div>
 	</body>
 </html>
