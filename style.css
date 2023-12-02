@@ -1,12 +1,12 @@
 /* General styling */
+html {
+	height: 100%;
+}
+
 body {
 	font-family: "Segoe UI", Arial, sans-serif;
 	color: rgb(51, 51, 51);
-}
-
-.form-bg,
-.hero {
-	height: 100svh;
+	min-height: 100%;
 }
 
 .flex {
@@ -46,23 +46,23 @@ a:visited {
 .hero-text > img {
 	width: 7.5rem;
 	margin-bottom: 2rem;
-	filter: drop-shadow(0 9px 3px rgba(0, 0, 0, 0.205)) saturate(95%);
+	filter: drop-shadow(0 9px 3px rgba(0, 0, 0, 0.35)) saturate(90%);
 }
 
 .hero-text > h1 {
 	font-size: 4rem;
 	font-weight: 700;
-	text-shadow: 0 6px 8px rgba(0, 0, 0, 0.205);
+	text-shadow: 0 6px 8px rgba(0, 0, 0, 0.35);
 }
 
 .hero-text > p {
 	font-weight: 400;
-	text-shadow: 0 6px 5px rgba(0, 0, 0, 0.205);
+	text-shadow: 0 6px 5px rgba(0, 0, 0, 0.35);
 }
 
 .photo-credit {
 	position: absolute;
-	top: 98svh;
+	top: 98%;
 }
 
 .photo-credit,
