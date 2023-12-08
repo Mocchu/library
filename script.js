@@ -1,5 +1,6 @@
 // Selectors
 const shelfDiv = document.querySelector(".shelf");
+const form = document.querySelector("form");
 
 const modal = document.querySelector("dialog");
 const newBookBtn = document.querySelector(".new-book");
@@ -41,11 +42,13 @@ function createCard(book) {
 	for (const li of [author, pages, read]) ul.append(li);
 	card.append(ul);
 
+	card.classList.add("card");
+
 	return card;
 }
 
 function addCardToShelf(card) {
-	shelfDiv.append(card);
+	if (card) shelfDiv.append(card);
 }
 
 // Event listeners
@@ -58,6 +61,9 @@ function addCardToShelf(card) {
 // });
 
 submitBtn.addEventListener("click", (e) => {
+	// If form is invalid do nothing
+	if (!form.checkValidity()) return;
+
 	// Assign values
 	const titleInp = document.querySelector("#title").value;
 	const authorInp = document.querySelector("#author").value;
@@ -73,7 +79,7 @@ submitBtn.addEventListener("click", (e) => {
 	addCardToShelf(newCard);
 
 	// Reset form fields
-	document.querySelector("form").reset();
+	form.reset();
 
 	// Stop required validation error on submit
 	e.preventDefault();

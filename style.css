@@ -44,7 +44,7 @@ a:visited {
 
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-between;
+	gap: 4rem;
 
 	background-image: url(img/bg.jpg);
 	background-position: 40% 66%;
@@ -54,14 +54,38 @@ a:visited {
 	text-align: center;
 }
 
+/* .hero>.shelf {
+	background-color: rgba(255, 255, 255, 0.5);
+	padding: 4rem;
+	width: 60%;
+	height: 60%;
+	border-radius: 1rem;
+
+	color: rgb(116, 116, 116);
+} */
+
+.shelf {
+	flex-wrap: wrap;
+	flex-direction: row;
+	gap: 1rem;
+}
+
+.card {
+	color: rgb(85, 85, 85);
+	background-color: rgba(255, 255, 255, 0.5);
+	padding: 1rem;
+	border-radius: 0.25rem;
+}
+
 .hero>h1 {
-	margin-top: 19%;
+	margin-top: 10%;
 	font-size: 4rem;
 	font-weight: 700;
 	text-shadow: 0 6px 8px rgba(0, 0, 0, 0.35);
 }
 
 .photo-credit {
+	margin-top: auto;
 	margin-bottom: 1rem;
 }
 
