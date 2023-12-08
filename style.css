@@ -41,27 +41,28 @@ a:visited {
 
 .hero {
 	width: 50svw;
-	justify-content: center;
+
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
 
 	background-image: url(img/bg.jpg);
-	background-position: 40% 68%;
+	background-position: 40% 66%;
 	background-repeat: no-repeat;
 
 	color: rgb(255, 255, 255);
-	flex-direction: column;
 	text-align: center;
-	align-items: center;
 }
 
 .hero>h1 {
+	margin-top: 19%;
 	font-size: 4rem;
 	font-weight: 700;
 	text-shadow: 0 6px 8px rgba(0, 0, 0, 0.35);
 }
 
 .photo-credit {
-	position: absolute;
-	top: 98%;
+	margin-bottom: 1rem;
 }
 
 .photo-credit,
@@ -127,24 +128,37 @@ a:visited {
 	border: 1px solid rgba(0, 0, 0, 0.205);
 }
 
+
+.form-card .read-li {
+	flex-direction: row;
+	justify-items: start;
+	align-items: center;
+}
+
+.read-li>label,
+#read {
+	margin: 0;
+	padding: 0;
+}
+
+#read {
+	margin-top: 3px;
+	margin-left: 15px;
+}
+
 .form-card input:indeterminate {
 	border: 1px solid rgba(0, 0, 0, 0.205);
 }
 
-.form-card input[type="submit"],
-.form-card input[type="submit"]:hover,
-.form-card input[type="submit"]:active,
+.form-card button[type="submit"]:hover,
+.form-card button[type="submit"]:active,
 .form-card input:focus {
-	transition: all 1s ease;
+	transition: all 0.25s ease;
 }
 
 .form-card input:focus {
 	box-shadow: 0 5px 7px rgba(0, 0, 0, 0.205);
 	outline-color: rgb(0, 124, 207);
-}
-
-.buttons {
-	text-align: center;
 }
 
 .form-card button[type="submit"] {
@@ -153,11 +167,11 @@ a:visited {
 	border: none;
 	width: 100%;
 	padding: 1rem 3rem;
-	margin-top: 2rem;
 }
 
 .form-card button[type="submit"]:hover {
 	cursor: pointer;
+	background-color: rgb(20, 133, 209);
 	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.205);
 }
 
@@ -171,6 +185,10 @@ a:visited {
 }
 
 /* Footer */
+footer {
+	margin-top: 1rem;
+}
+
 footer * {
 	color: rgba(0, 0, 0, 0.534);
 }
