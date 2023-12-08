@@ -1,6 +1,6 @@
 # library
 
-The Odin Project - Project 4/5 (repurposed)
+The Odin Project - Project 4 & 6 (repurposed)
 
 Microsoft inspired library system created using HTML, CSS &amp; JS
 
