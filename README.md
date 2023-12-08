@@ -1,9 +1,9 @@
-# signup-form
+# library
 
-The Odin Project - Project 4
+The Odin Project - Project 4/5 (repurposed)
 
-Microsoft inspired signup form created using HTML, CSS &amp; JS
+Microsoft inspired library system created using HTML, CSS &amp; JS
 
-[👉 Live Demo](https://mocchu.github.io/signup-form/)
+[👉 Live Demo](https://mocchu.github.io/library/)
 
 <img src="img/sc.png" width="825" />
