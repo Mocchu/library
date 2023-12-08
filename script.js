@@ -49,13 +49,13 @@ function addCardToShelf(card) {
 }
 
 // Event listeners
-newBookBtn.addEventListener("click", () => {
-	modal.showModal();
-});
+// newBookBtn.addEventListener("click", () => {
+// 	modal.showModal();
+// });
 
-closeBtn.addEventListener("click", () => {
-	modal.close();
-});
+// closeBtn.addEventListener("click", () => {
+// 	modal.close();
+// });
 
 submitBtn.addEventListener("click", (e) => {
 	// Assign values
