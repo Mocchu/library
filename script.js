@@ -25,8 +25,8 @@ function addBookToLibrary(book) {
 function createCard(book) {
 	// Create elements
 	const card = document.createElement("div");
-	const title = document.createElement("h2");
 	const ul = document.createElement("ul");
+	const title = document.createElement("li");
 	const author = document.createElement("li");
 	const pages = document.createElement("li");
 	const read = document.createElement("li");
@@ -39,7 +39,7 @@ function createCard(book) {
 
 	// Append content to card
 	card.append(title);
-	for (const li of [author, pages, read]) ul.append(li);
+	for (const li of [title, author, pages, read]) ul.append(li);
 	card.append(ul);
 
 	card.classList.add("card");
