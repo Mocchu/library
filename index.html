@@ -11,96 +11,67 @@
 	</head>
 	<body class="flex">
 		<div class="hero flex">
-			<div class="hero-text flex fadeInUp-animation">
-				<img src="img/ms-icon.png" alt="Microsoft logo" />
-				<h1>Welcome</h1>
-				<p>to a Microsoft themed signup form</p>
+			<h1>Bookshelf</h1>
+
+			<div class="shelf">
+				<div class="header card">
+					<ul>
+						<li>Title</li>
+						<li>Author</li>
+						<li>Pages</li>
+						<li>Status</li>
+					</ul>
+				</div>
 			</div>
-			<p class="photo-credit fadeInUp-animation">
-				Images by
+			<p class="photo-credit">
+				Image by
 				<a href="https://www.microsoft.com/en-au">Microsoft</a>
 			</p>
 		</div>
+
 		<div class="form-bg flex fadeInUp-animation">
 			<div class="form-card flex">
-				<h1>Create your new account</h1>
-				<form action="" method="post">
+				<h1>Add a book</h1>
+				<form action="">
 					<ul class="form-list flex">
 						<li>
-							<label for="first-name">First name</label>
+							<label for="title">Title</label>
 							<input
 								type="text"
-								id="first-name"
-								name="first-name"
-								autocomplete="given-name"
-								placeholder="John"
+								id="title"
+								name="title"
+								placeholder="Harry Potter and the Philosopher's Stone"
 								required
 							/>
 						</li>
 						<li>
-							<label for="last-name">Last name</label>
+							<label for="author">Author</label>
 							<input
 								type="text"
-								id="last-name"
-								name="last-name"
-								autocomplete="family-name"
-								placeholder="Doe"
+								id="author"
+								name="author"
+								placeholder="J.K Rowling"
 								required
 							/>
 						</li>
 						<li>
-							<label for="email">Email</label>
+							<label for="pages">Pages</label>
 							<input
-								type="email"
-								id="email"
-								name="email"
-								autocomplete="email"
-								placeholder="example@email.com"
+								type="pages"
+								id="pages"
+								name="pages"
+								placeholder="223"
 								required
 							/>
 						</li>
-						<li>
-							<label for="tel">Phone number</label>
-							<input
-								type="tel"
-								id="tel"
-								name="tel"
-								autocomplete="tel"
-								placeholder="1234567890"
-								required
-							/>
+						<li class="read-li flex">
+							<label for="read">Read</label>
+							<input type="checkbox" id="read" name="read" />
 						</li>
 						<li>
-							<label for="pw">Password</label>
-							<input
-								type="password"
-								id="pw"
-								name="pw"
-								placeholder="supersecurepassword"
-								required
-							/>
-						</li>
-						<li>
-							<label for="pw2">Confirm password</label>
-							<input
-								type="password"
-								id="pw2"
-								name="pw2"
-								required
-							/>
+							<button type="submit" class="login">Submit</button>
 						</li>
 					</ul>
-
-					<div class="buttons">
-						<input
-							type="submit"
-							value="Create account"
-							class="submit"
-						/>
-						<p class="login">
-							Already have an account? <a href="#">Login</a>
-						</p>
-					</div>
 				</form>
 			</div>
 			<footer>
