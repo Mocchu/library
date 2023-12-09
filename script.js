@@ -91,11 +91,16 @@ shelfDiv.addEventListener("click", (e) => {
 	// When user clicks a card
 	showEditForm();
 	e.stopPropagation();
-	book = getBook(e); // Defined outside this function
+	book = getBook(e); // Defined in global scope
 
 	// Set content
 	editH1.textContent = book.title;
 	editRead.checked = book.read === true;
+});
+
+document.addEventListener("click", () => {
+	// When user clicks off edit form
+	showAddBookForm();
 });
 
 editRead.addEventListener("click", (e) => {
@@ -103,14 +108,23 @@ editRead.addEventListener("click", (e) => {
 	const readStatus = e.target.checked;
 	book.read = readStatus;
 
+	// Update the DOM
 	const card = document.querySelector(`[index="${book.index}"]`);
 	const cardStatus = card.children[0].children[3];
 	cardStatus.textContent = emojify(book.read);
 });
 
-document.addEventListener("click", () => {
-	// When user clicks off edit form
-	showAddBookForm();
+editDelete.addEventListener("click", () => {
+	// Delete from myLibrary array
+	// Replace with empty object, as deleting will mess up index assignment on book instantiation
+	myLibrary[book.index] = [];
+
+	// Delete card from DOM
+	const card = document.querySelector(`[index="${book.index}"]`);
+	card.remove();
+
+	// Unfocus edit modal to prevent issues from editing deleted objects
+	document.click();
 });
 
 editCard.addEventListener("click", (e) => {
