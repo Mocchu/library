@@ -178,7 +178,8 @@ a:visited {
 	flex-direction: column;
 }
 
-.form-card>h1 {
+.form-card>h1,
+.edit-card>h1 {
 	font-size: 2.5rem;
 	font-weight: 700;
 	margin-bottom: 1.5rem;
@@ -259,6 +260,58 @@ a:visited {
 
 .form-card .login:hover {
 	text-shadow: 0 2px 3px rgba(0, 0, 0, 0.068);
+}
+
+/* Edit form */
+.edit-card>h1 {
+	margin-bottom: 0;
+}
+
+.edit-card>p {
+	color: rgb(117, 117, 117);
+	margin-bottom: 1.5rem;
+}
+
+.edit-h1 {
+	font-size: 1.25rem;
+	margin-top: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.edit-card-options {
+	flex-direction: column;
+	gap: 0.5rem;
+	color: black !important;
+}
+
+.edit-card-options label {
+	position: relative;
+	font-weight: 400 !important;
+	color: black !important;
+}
+
+.edit-card-options input {
+	position: absolute;
+	top: 3px;
+	align-self: center;
+}
+
+.edit-delete {
+	background-color: rgb(255, 88, 88);
+	padding: 0.5rem 1rem;
+	width: min-content;
+	border-radius: 0.4rem;
+	color: white;
+	user-select: none;
+}
+
+.edit-delete:hover {
+	cursor: pointer;
+	background-color: rgb(255, 107, 107);
+}
+
+.edit-delete:active {
+	color: rgb(250, 152, 152);
 }
 
 /* Footer */

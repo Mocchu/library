@@ -60,20 +60,6 @@ const editRead = document.querySelector(".edit-read");
 const editDelete = document.querySelector(".edit-delete");
 
 // Event listeners
-shelfDiv.addEventListener("click", (e) => {
-	// When user clicks a card
-	e.stopPropagation();
-	showEditForm();
-	index = getcardIndex(e);
-
-	editH1.textContent = "";
-});
-
-document.addEventListener("click", (e) => {
-	// When user unfocuses the edit form
-	showAddBookForm();
-});
-
 submitBtn.addEventListener("click", (e) => {
 	// If form is invalid do nothing
 	if (!form.checkValidity()) return;
@@ -99,6 +85,25 @@ submitBtn.addEventListener("click", (e) => {
 	e.preventDefault();
 });
 
+shelfDiv.addEventListener("click", (e) => {
+	// When user clicks a card
+	e.stopPropagation();
+	showEditForm();
+	index = getcardIndex(e);
+	book = myLibrary[index];
+
+	editH1.textContent = book.title;
+});
+
+document.addEventListener("click", (e) => {
+	// When user unfocuses the edit form
+	showAddBookForm();
+});
+
+editCard.addEventListener("click", (e) => {
+	e.stopPropagation();
+});
+
 // Utility functions
 function getcardIndex(e) {
 	let currentElement = e.target;
@@ -107,8 +112,6 @@ function getcardIndex(e) {
 	}
 	return currentElement.getAttribute("index");
 }
-
-function getBook(index) {}
 
 function showEditForm() {
 	// Hide "Add a book" content
