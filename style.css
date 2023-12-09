@@ -89,7 +89,7 @@ a:visited {
 	gap: 1rem;
 	width: 83%;
 
-	/* Scuffed fix alert (idk D: ) */
+	/* Scuffed fix alert ( idk D: ) */
 	margin-right: 2rem;
 }
 
@@ -334,7 +334,6 @@ footer * {
 /* Media query */
 @media (max-width: 900px) {
 	body {
-		color: white;
 		flex-direction: column;
 		background-size: fill;
 	}
@@ -351,15 +350,18 @@ footer * {
 	.form-card {
 		align-items: center;
 		padding: 3rem 3rem;
-		width: 100%;
+		width: 72.5%;
 		animation: none;
-		background-color: rgba(255, 255, 255, 0);
+		background-color: rgba(255, 255, 255, 0.87);
+	}
+
+	.form-card h1 {
+		color: black !important;
 	}
 
 	.form-card h1,
 	.form-card form {
 		animation: 1.5s fadeInUp;
-		color: white !important;
 	}
 
 	.form-card ul {
@@ -381,6 +383,11 @@ footer * {
 
 	.form-card input {
 		width: 50svw;
+	}
+
+	label[for="read"] {
+		width: min-content;
+		align-self: left;
 	}
 
 	footer {

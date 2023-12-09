@@ -3,6 +3,7 @@ let book;
 
 const shelfDiv = document.querySelector(".shelf");
 const form = document.querySelector("form");
+const formCard = document.querySelector(".form-card");
 const addBookThings = document.getElementsByClassName("add");
 
 const newBookBtn = document.querySelector(".new-book");
@@ -118,6 +119,10 @@ editDelete.addEventListener("click", () => {
 
 editCard.addEventListener("click", (e) => {
 	e.stopPropagation(); // Prevents edit form from being hidden on click
+});
+
+formCard.addEventListener("click", (e) => {
+	e.stopPropagation();
 });
 
 // Utility functions
