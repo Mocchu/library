@@ -27,7 +27,8 @@ function createCard(book) {
 	title.textContent = book.title;
 	author.textContent = book.author;
 	pages.textContent = book.pages;
-	read.textContent = book.read;
+	readStatus = emojify(book.read);
+	read.textContent = readStatus;
 
 	// Append content to card
 	card.append(title);
@@ -60,6 +61,8 @@ const editRead = document.querySelector(".edit-read");
 const editDelete = document.querySelector(".edit-delete");
 
 // Event listeners
+let book;
+
 submitBtn.addEventListener("click", (e) => {
 	// If form is invalid do nothing
 	if (!form.checkValidity()) return;
@@ -69,7 +72,6 @@ submitBtn.addEventListener("click", (e) => {
 	const authorInp = document.querySelector("#author").value;
 	const pagesInp = document.querySelector("#pages").value;
 	let readInp = document.querySelector("#read").checked;
-	readInp = readInp ? "✅" : "📖";
 	const index = myLibrary.length;
 
 	// Create and append book & card
@@ -87,16 +89,27 @@ submitBtn.addEventListener("click", (e) => {
 
 shelfDiv.addEventListener("click", (e) => {
 	// When user clicks a card
-	e.stopPropagation();
 	showEditForm();
-	index = getcardIndex(e);
-	book = myLibrary[index];
+	e.stopPropagation();
+	book = getBook(e); // Defined outside this function
 
+	// Set content
 	editH1.textContent = book.title;
+	editRead.checked = book.read === true;
 });
 
-document.addEventListener("click", (e) => {
-	// When user unfocuses the edit form
+editRead.addEventListener("click", (e) => {
+	// Update the object with new edited read status
+	const readStatus = e.target.checked;
+	book.read = readStatus;
+
+	const card = document.querySelector(`[index="${book.index}"]`);
+	const cardStatus = card.children[0].children[3];
+	cardStatus.textContent = emojify(book.read);
+});
+
+document.addEventListener("click", () => {
+	// When user clicks off edit form
 	showAddBookForm();
 });
 
@@ -105,12 +118,13 @@ editCard.addEventListener("click", (e) => {
 });
 
 // Utility functions
-function getcardIndex(e) {
+function getBook(e) {
 	let currentElement = e.target;
 	while (!currentElement.classList.contains("card")) {
 		currentElement = currentElement.parentElement;
 	}
-	return currentElement.getAttribute("index");
+	const index = currentElement.getAttribute("index");
+	return myLibrary[index];
 }
 
 function showEditForm() {
@@ -131,12 +145,16 @@ function showAddBookForm() {
 	editCard.classList.add("hidden");
 }
 
+function emojify(read) {
+	return read ? "✅" : "📖";
+}
+
 // Create example book for display
 const exampleBook = new Book(
 	"Harry Potter and the Philosopher's Stone",
 	"J.K. Rowling",
 	223,
-	"✅",
+	true,
 	0
 );
 
