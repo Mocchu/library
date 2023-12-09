@@ -1,53 +1,6 @@
-// Backend
-const myLibrary = [];
+// Variables
+let book;
 
-function Book(title, author, pages, read, index) {
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.read = read;
-	this.index = index;
-}
-
-function addBookToLibrary(book) {
-	myLibrary.push(book);
-}
-
-// Frontend
-function createCard(book) {
-	// Create elements
-	const card = document.createElement("div");
-	const ul = document.createElement("ul");
-	const title = document.createElement("li");
-	const author = document.createElement("li");
-	const pages = document.createElement("li");
-	const read = document.createElement("li");
-
-	// Set content
-	title.textContent = book.title;
-	author.textContent = book.author;
-	pages.textContent = book.pages;
-	readStatus = emojify(book.read);
-	read.textContent = readStatus;
-
-	// Append content to card
-	card.append(title);
-	for (const li of [title, author, pages, read]) ul.append(li);
-	card.append(ul);
-
-	// Set classes and attributes
-	card.classList.add("card");
-	card.classList.add("fadeInUp-animation");
-	card.setAttribute("index", book.index);
-
-	return card;
-}
-
-function addCardToShelf(card) {
-	if (card) shelfDiv.append(card);
-}
-
-// Selectors
 const shelfDiv = document.querySelector(".shelf");
 const form = document.querySelector("form");
 const addBookThings = document.getElementsByClassName("add");
@@ -60,63 +13,93 @@ const editH1 = document.querySelector(".edit-h1");
 const editRead = document.querySelector(".edit-read");
 const editDelete = document.querySelector(".edit-delete");
 
+// Objects
+const myLibrary = [];
+
+function Book(title, author, pages, read, index) {
+	this.title = title;
+	this.author = author;
+	this.pages = pages;
+	this.read = read;
+	this.index = index;
+}
+
+function createCard(book) {
+	// Create elements and assign text content
+	const card = document.createElement("div");
+	const ul = document.createElement("ul");
+	const title = createListItem(book.title);
+	const author = createListItem(book.author);
+	const pages = createListItem(book.pages);
+	const read = createListItem(emojify(book.read));
+
+	function createListItem(content) {
+		const li = document.createElement("li");
+		li.textContent = content;
+		return li;
+	}
+
+	// Append list items to card
+	card.append(title);
+	for (const li of [title, author, pages, read]) ul.append(li);
+	card.append(ul);
+
+	// Set classes and attributes
+	card.classList.add("card");
+	card.classList.add("fadeInUp-animation");
+	card.setAttribute("index", book.index);
+
+	return card;
+}
+
 // Event listeners
-let book;
-
 submitBtn.addEventListener("click", (e) => {
-	// If form is invalid do nothing
-	if (!form.checkValidity()) return;
+	if (!form.checkValidity()) return; // If form is invalid do nothing
 
-	// Assign values
+	// Assign variables
 	const titleInp = document.querySelector("#title").value;
 	const authorInp = document.querySelector("#author").value;
 	const pagesInp = document.querySelector("#pages").value;
-	let readInp = document.querySelector("#read").checked;
+	const readInp = document.querySelector("#read").checked;
 	const index = myLibrary.length;
 
 	// Create and append book & card
 	newBook = new Book(titleInp, authorInp, pagesInp, readInp, index);
-	addBookToLibrary(newBook);
-	newCard = createCard(newBook);
-	addCardToShelf(newCard);
+	myLibrary.push(newBook);
+	shelfDiv.append(createCard(newBook));
 
-	// Reset form fields
-	form.reset();
-
-	// Stop "required" validation error on submit
-	e.preventDefault();
+	form.reset(); // Reset form fields
+	e.preventDefault(); // Stop "required" validation error on submit
 });
 
 shelfDiv.addEventListener("click", (e) => {
-	// When user clicks a card
+	// Triggers when user clicks a card
 
 	// Don't show modal if header is clicked
-	console.log(e.target.parentElement);
 	if (
 		e.target.classList.contains("header") ||
 		e.target.parentElement.classList.contains("header1")
 	)
 		return;
 
-	// Show form and get book
+	// Show edit form to user and get book
 	showEditForm();
-	e.stopPropagation();
-	book = getBook(e); // Defined in global scope
+	e.stopPropagation(); // Prevents clicking the doc & closing the edit form
+	book = getBook(e);
 
 	// Set content
 	editH1.textContent = book.title;
 	editRead.checked = book.read === true;
 });
 
-// When user clicks off edit form
-document.addEventListener("click", showAddBookForm);
+document.addEventListener("click", showAddBookForm); // Triggers when user clicks off the edit form
 
 editRead.addEventListener("click", (e) => {
 	// Update the object with new edited read status
 	const readStatus = e.target.checked;
 	book.read = readStatus;
 
-	// Update the DOM
+	// Update the read status in the DOM
 	const card = document.querySelector(`[index="${book.index}"]`);
 	const cardStatus = card.children[0].children[3];
 	cardStatus.textContent = emojify(book.read);
@@ -124,23 +107,22 @@ editRead.addEventListener("click", (e) => {
 
 editDelete.addEventListener("click", () => {
 	// Delete from myLibrary array
-	// Replace with empty object, as deleting will mess up index assignment on book instantiation
-	myLibrary[book.index] = [];
+	myLibrary[book.index] = []; // Deleting object will mess up index assignment on book instantiation
 
 	// Delete card from DOM
 	const card = document.querySelector(`[index="${book.index}"]`);
 	card.remove();
 
-	// Unfocus edit modal to prevent issues from editing deleted objects
-	showAddBookForm();
+	showAddBookForm(); // Hide edit form and show new book form
 });
 
 editCard.addEventListener("click", (e) => {
-	e.stopPropagation();
+	e.stopPropagation(); // Prevents edit form from being hidden on click
 });
 
 // Utility functions
 function getBook(e) {
+	// Traverse up the DOM to get a specific card element
 	let currentElement = e.target;
 	while (!currentElement.classList.contains("card")) {
 		currentElement = currentElement.parentElement;
@@ -150,20 +132,13 @@ function getBook(e) {
 }
 
 function showEditForm() {
-	// Hide "Add a book" content
-	for (let element of addBookThings) {
-		element.classList.add("hidden");
-	}
-
-	// Show "Edit" content
-	editCard.classList.remove("hidden");
+	for (let element of addBookThings) element.classList.add("hidden"); // Hide new book form
+	editCard.classList.remove("hidden"); // Show edit form
 }
 
 function showAddBookForm() {
-	// Show "Add a book" when click off "Edit" content
-	for (let element of addBookThings) {
-		element.classList.remove("hidden");
-	}
+	// Opposite of showEditForm()
+	for (let element of addBookThings) element.classList.remove("hidden");
 	editCard.classList.add("hidden");
 }
 
@@ -180,4 +155,4 @@ const exampleBook = new Book(
 	0
 );
 
-addBookToLibrary(exampleBook);
+myLibrary.push(exampleBook);
