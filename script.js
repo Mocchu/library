@@ -71,7 +71,7 @@ submitBtn.addEventListener("click", (e) => {
 	const pagesInp = document.querySelector("#pages").value;
 	let readInp = document.querySelector("#read").checked;
 
-	readInp = readInp ? "Completed" : "Incomplete";
+	readInp = readInp ? "✅" : "📖";
 
 	// Create and append book & card
 	newBook = new Book(titleInp, authorInp, pagesInp, readInp);
