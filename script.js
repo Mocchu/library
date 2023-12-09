@@ -89,6 +89,16 @@ submitBtn.addEventListener("click", (e) => {
 
 shelfDiv.addEventListener("click", (e) => {
 	// When user clicks a card
+
+	// Don't show modal if header is clicked
+	console.log(e.target.parentElement);
+	if (
+		e.target.classList.contains("header") ||
+		e.target.parentElement.classList.contains("header1")
+	)
+		return;
+
+	// Show form and get book
 	showEditForm();
 	e.stopPropagation();
 	book = getBook(e); // Defined in global scope
@@ -98,10 +108,8 @@ shelfDiv.addEventListener("click", (e) => {
 	editRead.checked = book.read === true;
 });
 
-document.addEventListener("click", () => {
-	// When user clicks off edit form
-	showAddBookForm();
-});
+// When user clicks off edit form
+document.addEventListener("click", showAddBookForm);
 
 editRead.addEventListener("click", (e) => {
 	// Update the object with new edited read status
@@ -124,7 +132,7 @@ editDelete.addEventListener("click", () => {
 	card.remove();
 
 	// Unfocus edit modal to prevent issues from editing deleted objects
-	document.click();
+	showAddBookForm();
 });
 
 editCard.addEventListener("click", (e) => {
