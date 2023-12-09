@@ -8,4 +8,4 @@ Microsoft inspired book tracker library created using HTML, CSS &amp; JS
 
 <img src="img/sc.png" width="825" />
 
-<img src="img/sc-mobile.png" width="825" />
+<img src="img/sc-mobile.png" width="425" />
