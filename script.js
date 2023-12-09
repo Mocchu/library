@@ -13,14 +13,6 @@ function addBookToLibrary(book) {
 	myLibrary.push(book);
 }
 
-function getcardIndex(e) {
-	let currentElement = e.target;
-	while (!currentElement.classList.contains("card")) {
-		currentElement = currentElement.parentElement;
-	}
-	return currentElement.getAttribute("index");
-}
-
 // Frontend
 function createCard(book) {
 	// Create elements
@@ -57,12 +49,29 @@ function addCardToShelf(card) {
 // Selectors
 const shelfDiv = document.querySelector(".shelf");
 const form = document.querySelector("form");
+const addBookThings = document.getElementsByClassName("add");
+
 const newBookBtn = document.querySelector(".new-book");
 const submitBtn = document.querySelector("button[type=submit]");
 
+const editCard = document.querySelector(".edit-card");
+const editH1 = document.querySelector(".edit-h1");
+const editRead = document.querySelector(".edit-read");
+const editDelete = document.querySelector(".edit-delete");
+
 // Event listeners
 shelfDiv.addEventListener("click", (e) => {
+	// When user clicks a card
+	e.stopPropagation();
+	showEditForm();
 	index = getcardIndex(e);
+
+	editH1.textContent = "";
+});
+
+document.addEventListener("click", (e) => {
+	// When user unfocuses the edit form
+	showAddBookForm();
 });
 
 submitBtn.addEventListener("click", (e) => {
@@ -74,8 +83,8 @@ submitBtn.addEventListener("click", (e) => {
 	const authorInp = document.querySelector("#author").value;
 	const pagesInp = document.querySelector("#pages").value;
 	let readInp = document.querySelector("#read").checked;
-	const index = myLibrary.length;
 	readInp = readInp ? "✅" : "📖";
+	const index = myLibrary.length;
 
 	// Create and append book & card
 	newBook = new Book(titleInp, authorInp, pagesInp, readInp, index);
@@ -89,6 +98,35 @@ submitBtn.addEventListener("click", (e) => {
 	// Stop required validation error on submit
 	e.preventDefault();
 });
+
+// Utility functions
+function getcardIndex(e) {
+	let currentElement = e.target;
+	while (!currentElement.classList.contains("card")) {
+		currentElement = currentElement.parentElement;
+	}
+	return currentElement.getAttribute("index");
+}
+
+function getBook(index) {}
+
+function showEditForm() {
+	// Hide "Add a book" content
+	for (let element of addBookThings) {
+		element.classList.add("hidden");
+	}
+
+	// Show "Edit" content
+	editCard.classList.remove("hidden");
+}
+
+function showAddBookForm() {
+	// Show "Add a book" when click off "Edit" content
+	for (let element of addBookThings) {
+		element.classList.remove("hidden");
+	}
+	editCard.classList.add("hidden");
+}
 
 // Create example book for display
 const exampleBook = new Book(
