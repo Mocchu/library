@@ -10,11 +10,12 @@ const submitBtn = document.querySelector("button[type=submit]");
 // Backend
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, index) {
 	this.title = title;
 	this.author = author;
 	this.pages = pages;
 	this.read = read;
+	this.index = index;
 }
 
 function addBookToLibrary(book) {
@@ -53,6 +54,9 @@ function addCardToShelf(card) {
 }
 
 // Event listeners
+shelfDiv.addEventListener("click", (e) => {
+	console.log(e.target);
+});
 // newBookBtn.addEventListener("click", () => {
 // 	modal.showModal();
 // });
@@ -70,11 +74,11 @@ submitBtn.addEventListener("click", (e) => {
 	const authorInp = document.querySelector("#author").value;
 	const pagesInp = document.querySelector("#pages").value;
 	let readInp = document.querySelector("#read").checked;
-
+	const index = myLibrary.length;
 	readInp = readInp ? "✅" : "📖";
 
 	// Create and append book & card
-	newBook = new Book(titleInp, authorInp, pagesInp, readInp);
+	newBook = new Book(titleInp, authorInp, pagesInp, readInp, index);
 	addBookToLibrary(newBook);
 	newCard = createCard(newBook);
 	addCardToShelf(newCard);
@@ -85,3 +89,14 @@ submitBtn.addEventListener("click", (e) => {
 	// Stop required validation error on submit
 	e.preventDefault();
 });
+
+// Create example book for display
+const exampleBook = new Book(
+	"Harry Potter and the Philosopher's Stone",
+	"J.K. Rowling",
+	223,
+	"✅",
+	0
+);
+
+addBookToLibrary(exampleBook);

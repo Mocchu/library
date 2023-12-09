@@ -1,3 +1,12 @@
+/* Utility */
+.flex {
+	display: flex;
+}
+
+.hidden {
+	display: hidden;
+}
+
 /* General styling */
 html {
 	height: 100%;
@@ -7,10 +16,6 @@ body {
 	font-family: "Segoe UI", Arial, sans-serif;
 	color: rgb(51, 51, 51);
 	min-height: 100%;
-}
-
-.flex {
-	display: flex;
 }
 
 a:visited {
@@ -110,17 +115,21 @@ a:visited {
 
 .card:not(.header):hover {
 	cursor: pointer;
+	background-color: rgb(255, 255, 255);
+
 }
 
 .card ul {
 	display: grid;
-	grid-template-columns: 3fr 2fr 1fr 1fr;
+	grid-template-columns: 4fr 2fr 1fr 1fr;
 	grid-auto-flow: column;
 	gap: 3rem;
+	width: 100%;
 }
 
 .card li {
 	align-self: center;
+	text-wrap: break-word;
 }
 
 .card li:nth-child(1) {
