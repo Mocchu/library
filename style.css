@@ -10,6 +10,11 @@
 /* General styling */
 html {
 	height: 100%;
+
+	background-image: url(img/bg.png);
+	background-position: 40% 0;
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 body {
@@ -49,10 +54,6 @@ a:visited {
 	flex-direction: column;
 	align-items: center;
 
-	background-image: url(img/bg.jpg);
-	background-position: 40% 66%;
-	background-repeat: no-repeat;
-
 	color: rgb(255, 255, 255);
 	text-align: center;
 }
@@ -73,6 +74,7 @@ a:visited {
 }
 
 .hero h1 {
+	color: white;
 	font-size: 3rem;
 	font-weight: 700;
 	text-shadow: 0 3px 5px rgba(0, 0, 0, 0.35);
@@ -96,27 +98,32 @@ a:visited {
 
 .header * {
 	font-weight: 700;
-	color: rgb(54, 54, 54);
+	color: rgba(0, 0, 0, 0.911);
 	flex: 1;
 }
 
 .card {
-	display: flex;
 	width: 100%;
-	justify-content: center;
-	background-color: rgba(255, 255, 255, 0.836);
+	background-color: rgba(255, 255, 255, 0.808);
 	padding: 1rem;
 	border-radius: 0.3rem;
-	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.205);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 
-	color: rgb(63, 63, 63);
+	color: rgba(0, 0, 0, 0.801);
 	word-wrap: break-word;
+
+	transition: all 0.25s ease;
 }
 
 .card:not(.header):hover {
 	cursor: pointer;
 	background-color: rgb(255, 255, 255);
+	transition: all 0.25s ease;
+}
 
+.card:not(.header):active {
+	filter: brightness(0.95);
+	transition: all 0.25s ease;
 }
 
 .card ul {
@@ -135,6 +142,7 @@ a:visited {
 .card li:nth-child(1) {
 	text-align: left;
 	margin-left: 1rem;
+	max-width: 100%;
 }
 
 .photo-credit {
@@ -145,7 +153,7 @@ a:visited {
 .photo-credit,
 .photo-credit>* {
 	font-size: 0.75rem;
-	color: rgba(255, 255, 255, 0.664);
+	color: rgba(255, 255, 255, 0.5);
 }
 
 /* Right side hero */
@@ -155,17 +163,13 @@ a:visited {
 	align-items: center;
 	justify-content: center;
 	gap: 1.5rem;
-
-	background-color: rgb(235, 235, 235);
-	box-shadow: -5px 0 10px rgba(0, 0, 0, 0.13);
-	z-index: 1;
 }
 
 .form-card {
 	width: 50%;
-	background-color: white;
+	background-color: rgba(255, 255, 255, 0.849);
 	border-radius: 2%;
-	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.205);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.322);
 
 	padding: 5rem 5rem;
 }
@@ -180,6 +184,7 @@ a:visited {
 
 .form-card>h1,
 .edit-card>h1 {
+	color: rgba(0, 0, 0, 0.863);
 	font-size: 2.5rem;
 	font-weight: 700;
 	margin-bottom: 1.5rem;
@@ -192,7 +197,7 @@ a:visited {
 .form-card label {
 	font-weight: 600;
 	padding-bottom: 0.7rem;
-	color: rgb(61, 61, 61);
+	color: rgba(0, 0, 0, 0.767);
 }
 
 .form-card input,
@@ -228,14 +233,7 @@ a:visited {
 	border: 1px solid rgba(0, 0, 0, 0.205);
 }
 
-.form-card button[type="submit"]:hover,
-.form-card button[type="submit"]:active,
 .form-card input:focus {
-	transition: all 0.25s ease;
-}
-
-.form-card input:focus {
-	box-shadow: 0 5px 7px rgba(0, 0, 0, 0.205);
 	outline-color: rgb(0, 124, 207);
 }
 
@@ -245,12 +243,14 @@ a:visited {
 	border: none;
 	width: 100%;
 	padding: 1rem 3rem;
+
+	transition: all 0.25s ease;
 }
 
 .form-card button[type="submit"]:hover {
 	cursor: pointer;
-	background-color: rgb(20, 133, 209);
-	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.205);
+	background-color: rgb(38, 142, 211);
+	box-shadow: 0 0 7px rgba(0, 0, 0, 0.205);
 }
 
 .form-card button[type="submit"]:active,
@@ -324,13 +324,15 @@ footer {
 }
 
 footer * {
-	color: rgba(0, 0, 0, 0.534);
+	color: rgba(255, 255, 255, 0.329) !important;
 }
 
 /* Media query */
 @media (max-width: 900px) {
 	body {
+		color: white;
 		flex-direction: column;
+		background-size: fill;
 	}
 
 	.hero {
@@ -347,11 +349,13 @@ footer * {
 		padding: 3rem 3rem;
 		width: 100%;
 		animation: none;
+		background-color: rgba(255, 255, 255, 0);
 	}
 
 	.form-card h1,
 	.form-card form {
 		animation: 1.5s fadeInUp;
+		color: white !important;
 	}
 
 	.form-card ul {
@@ -365,6 +369,7 @@ footer * {
 	}
 
 	.form-card label {
+		color: inherit;
 		padding: 0;
 		margin-right: 1rem;
 		text-align: right;

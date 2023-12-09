@@ -83,7 +83,7 @@ submitBtn.addEventListener("click", (e) => {
 	// Reset form fields
 	form.reset();
 
-	// Stop required validation error on submit
+	// Stop "required" validation error on submit
 	e.preventDefault();
 });
 
