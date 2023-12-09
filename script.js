@@ -1,12 +1,3 @@
-// Selectors
-const shelfDiv = document.querySelector(".shelf");
-const form = document.querySelector("form");
-
-const modal = document.querySelector("dialog");
-const newBookBtn = document.querySelector(".new-book");
-const closeBtn = document.querySelector(".modal-close");
-const submitBtn = document.querySelector("button[type=submit]");
-
 // Backend
 const myLibrary = [];
 
@@ -20,6 +11,14 @@ function Book(title, author, pages, read, index) {
 
 function addBookToLibrary(book) {
 	myLibrary.push(book);
+}
+
+function getcardIndex(e) {
+	let currentElement = e.target;
+	while (!currentElement.classList.contains("card")) {
+		currentElement = currentElement.parentElement;
+	}
+	return currentElement.getAttribute("index");
 }
 
 // Frontend
@@ -43,8 +42,10 @@ function createCard(book) {
 	for (const li of [title, author, pages, read]) ul.append(li);
 	card.append(ul);
 
+	// Set classes and attributes
 	card.classList.add("card");
 	card.classList.add("fadeInUp-animation");
+	card.setAttribute("index", book.index);
 
 	return card;
 }
@@ -53,17 +54,16 @@ function addCardToShelf(card) {
 	if (card) shelfDiv.append(card);
 }
 
+// Selectors
+const shelfDiv = document.querySelector(".shelf");
+const form = document.querySelector("form");
+const newBookBtn = document.querySelector(".new-book");
+const submitBtn = document.querySelector("button[type=submit]");
+
 // Event listeners
 shelfDiv.addEventListener("click", (e) => {
-	console.log(e.target);
+	index = getcardIndex(e);
 });
-// newBookBtn.addEventListener("click", () => {
-// 	modal.showModal();
-// });
-
-// closeBtn.addEventListener("click", () => {
-// 	modal.close();
-// });
 
 submitBtn.addEventListener("click", (e) => {
 	// If form is invalid do nothing
