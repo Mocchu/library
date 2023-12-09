@@ -43,6 +43,7 @@ function createCard(book) {
 	card.append(ul);
 
 	card.classList.add("card");
+	card.classList.add("fadeInUp-animation");
 
 	return card;
 }
