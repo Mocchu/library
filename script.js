@@ -18,7 +18,7 @@ newBookForm.addEventListener("submit", (e) => {
 	const readInp = document.querySelector("#read").checked
 	const index = myLibrary.length
 
-	newBook = new Book(titleInp, authorInp, pagesInp, readInp, index)
+	newBook = Book(titleInp, authorInp, pagesInp, readInp, index)
 	myLibrary.push(newBook)
 	shelfDiv.append(createCard(newBook))
 
@@ -37,7 +37,7 @@ shelfDiv.addEventListener("click", (e) => {
 	)
 		return
 
-	showEditnewBookForm()
+	showEditBookCard()
 
 	book = getBook(e)
 	editBookH1.textContent = book.title
@@ -48,7 +48,7 @@ shelfDiv.addEventListener("click", (e) => {
 })
 
 // Triggers when user clicks off the edit card
-document.addEventListener("click", showAddBooknewBookForm)
+document.addEventListener("click", showNewBookCard)
 
 readCheckbox.addEventListener("click", (e) => {
 	const checkboxVal = e.target.checked
@@ -66,7 +66,7 @@ deleteBtn.addEventListener("click", () => {
 	const card = document.querySelector(`[index="${book.index}"]`)
 	card.remove()
 
-	showAddBooknewBookForm()
+	showNewBookCard()
 })
 
 // Prevents edit card from being hidden when clicking itself
@@ -104,6 +104,7 @@ function createListItem(content) {
 	li.textContent = content
 	return li
 }
+newBookElements
 
 function getBook(e) {
 	// Traverse up the DOM to get a specific card element
@@ -115,13 +116,13 @@ function getBook(e) {
 	return myLibrary[index]
 }
 
-function showEditnewBookForm() {
+function showEditBookCard() {
 	// Loop needed to edit h2, which is not nested within a shared div
 	for (let element of newBookElements) element.classList.add("hidden")
 	editBookDiv.classList.remove("hidden")
 }
 
-function showAddBooknewBookForm() {
+function showNewBookCard() {
 	for (let element of newBookElements) element.classList.remove("hidden")
 	editBookDiv.classList.add("hidden")
 }
