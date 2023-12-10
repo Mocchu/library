@@ -104,7 +104,6 @@ function createListItem(content) {
 	li.textContent = content
 	return li
 }
-newBookElements
 
 function getBook(e) {
 	// Traverse up the DOM to get a specific card element
@@ -133,7 +132,7 @@ function emojify(read) {
 
 // Create example book for display
 myLibrary.push(
-	new Book(
+	Book(
 		"Harry Potter and the Philosopher's Stone",
 		"J.K. Rowling",
 		223,
