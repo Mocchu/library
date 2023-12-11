@@ -33,6 +33,7 @@ shelfDiv.addEventListener("click", (e) => {
 	// Don't show edit card if header card is clicked
 	if (
 		e.target.classList.contains("header") ||
+		e.target.classList.contains("header1") ||
 		e.target.parentElement.classList.contains("header1")
 	)
 		return
