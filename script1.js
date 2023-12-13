@@ -1,8 +1,8 @@
-function Book(title, author, pages, read, index) {
-	return { title, author, pages, read, index }
-}
-
 const library = (function () {
+	function Book(title, author, pages, read, index) {
+		return { title, author, pages, read, index }
+	}
+
 	let book
 	const myLibrary = []
 
