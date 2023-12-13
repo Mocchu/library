@@ -1,3 +1,7 @@
+function Book(title, author, pages, read, index) {
+	return { title, author, pages, read, index }
+}
+
 const library = (function () {
 	let book
 	const myLibrary = []
@@ -23,28 +27,26 @@ const library = (function () {
 	const readCheckbox = document.querySelector(".edit-read")
 	const deleteBtn = document.querySelector(".edit-delete")
 
-	// Prevents edit card from being hidden when clicking itself
+	// Prevent edit card from being hidden when user clicks it
 	;[editBookDiv, newBookDiv].forEach((element) => {
-		element.addEventListener("click", (e) => {
-			e.stopPropagation()
+		element.addEventListener("click", (event) => {
+			event.stopPropagation()
 		})
 	})
 
 	// Bind events
 	document.addEventListener("click", showNewBookCard)
-	newBookForm.addEventListener("submit", createNewBook)
+	newBookForm.addEventListener("submit", createBook)
 	readCheckbox.addEventListener("click", updateReadStatus)
 	deleteBtn.addEventListener("click", deleteBook)
 	shelfDiv.addEventListener("click", initEditBookCard) // When a card is selected
 
 	// Functions
-	function createNewBook(e) {
-		if (!newBookForm.checkValidity()) return
-
-		const titleInp = document.querySelector("#title").value
-		const authorInp = document.querySelector("#author").value
-		const pagesInp = document.querySelector("#pages").value
-		const readInp = document.querySelector("#read").checked
+	function createBook(title, author, pages, read, event) {
+		const titleInp = title || document.querySelector("#title").value
+		const authorInp = author || document.querySelector("#author").value
+		const pagesInp = pages || document.querySelector("#pages").value
+		const readInp = read || document.querySelector("#read").checked
 		const index = myLibrary.length
 
 		newBook = Book(titleInp, authorInp, pagesInp, readInp, index)
@@ -54,30 +56,30 @@ const library = (function () {
 		newBookForm.reset()
 
 		// Stop "field required" validation error after submission
-		e.preventDefault()
+		if (event) event.preventDefault()
 	}
 
-	function initEditBookCard(e) {
+	function initEditBookCard(event) {
 		// Don't show edit card if header card is clicked
 		if (
-			e.target.classList.contains("header") ||
-			e.target.classList.contains("header1") ||
-			e.target.parentElement.classList.contains("header1")
+			event.target.classList.contains("header") ||
+			event.target.classList.contains("header1") ||
+			event.target.parentElement.classList.contains("header1")
 		)
 			return
 
 		showEditBookCard()
 
-		book = getBook(e)
+		book = getBook(event)
 		editBookH1.textContent = book.title
 		readCheckbox.checked = book.read === true
 
 		// Prevents clicking the doc & closing the new book card
-		e.stopPropagation()
+		event.stopPropagation()
 	}
 
-	function updateReadStatus(e) {
-		const checkboxVal = e.target.checked
+	function updateReadStatus(event) {
+		const checkboxVal = event.target.checked
 		book.read = checkboxVal
 
 		const card = document.querySelector(`[index="${book.index}"]`)
@@ -120,9 +122,9 @@ const library = (function () {
 		return li
 	}
 
-	function getBook(e) {
+	function getBook(event) {
 		// Traverse up the DOM to get a specific card element
-		let currentElement = e.target
+		let currentElement = event.target
 		while (!currentElement.classList.contains("card")) {
 			currentElement = currentElement.parentElement
 		}
@@ -145,9 +147,9 @@ const library = (function () {
 		return read ? "✅" : "📖"
 	}
 
-	return {}
-})()
+	function getLibrary() {
+		return myLibrary
+	}
 
-function Book(title, author, pages, read, index) {
-	return { title, author, pages, read, index }
-}
+	return { createBook, getLibrary }
+})()
