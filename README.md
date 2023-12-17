@@ -1,7 +1,5 @@
 # library
 
-The Odin Project - Project 4 & 6 (repurposed sign-up form)
-
 Microsoft inspired book tracker library created using HTML, CSS &amp; JS
 
 [👉 Live Demo](https://mocchu.github.io/library/)
