@@ -1,48 +1,91 @@
-const library = (function () {
-	function Book(title, author, pages, read, index) {
-		return { title, author, pages, read, index };
+// Cache DOM
+const shelfDiv = document.querySelector(".shelf");
+const newBookForm = document.querySelector("form");
+const newBookDiv = document.querySelector(".form-card");
+const newBookElements = document.getElementsByClassName("add");
+const editBookDiv = document.querySelector(".edit-card");
+const editBookH1 = document.querySelector(".edit-h1");
+const readCheckbox = document.querySelector(".edit-read");
+const deleteBtn = document.querySelector(".edit-delete");
+
+// Prevents edit card from being hidden when clicking itself
+[editBookDiv, newBookDiv].forEach((element) => {
+	element.addEventListener("click", (e) => {
+		e.stopPropagation();
+	});
+});
+
+class Book {
+	constructor(title, author, pages, read, index) {
+		this.title = title;
+		this.author = author;
+		this.pages = pages;
+		this.read = read;
+		this.index = index;
+	}
+}
+
+class Library {
+	constructor() {
+		this.book;
+		this.myLibrary = [];
+
+		// Create example book for display
+		this.myLibrary.push(
+			new Book(
+				"Harry Potter and the Philosopher's Stone",
+				"J.K. Rowling",
+				223,
+				true,
+				0
+			)
+		);
 	}
 
-	let book;
-	const myLibrary = [];
-
-	// Cache DOM
-	const shelfDiv = document.querySelector(".shelf");
-	const newBookForm = document.querySelector("form");
-	const newBookDiv = document.querySelector(".form-card");
-	const newBookElements = document.getElementsByClassName("add");
-	const editBookDiv = document.querySelector(".edit-card");
-	const editBookH1 = document.querySelector(".edit-h1");
-	const readCheckbox = document.querySelector(".edit-read");
-	const deleteBtn = document.querySelector(".edit-delete");
-
-	// Prevents edit card from being hidden when clicking itself
-	[editBookDiv, newBookDiv].forEach((element) => {
-		element.addEventListener("click", (e) => {
-			e.stopPropagation();
-		});
-	});
-
-	// Bind events
-	document.addEventListener("click", showNewBookCard);
-	newBookForm.addEventListener("submit", createNewBook);
-	readCheckbox.addEventListener("click", updateReadStatus);
-	deleteBtn.addEventListener("click", deleteBook);
-	shelfDiv.addEventListener("click", initEditBookCard); // When a card is selected
-
 	// Functions
-	function createNewBook(e) {
+	showEditBookCard() {
+		// Loop needed to edit h2, which is not nested within a shared div
+		for (let element of newBookElements) element.classList.add("hidden");
+		editBookDiv.classList.remove("hidden");
+	}
+
+	createListItem(content) {
+		const li = document.createElement("li");
+		li.textContent = content;
+		return li;
+	}
+
+	getBook(e) {
+		// Traverse up the DOM to get a specific card element
+		let currentElement = e.target;
+		while (!currentElement.classList.contains("card")) {
+			currentElement = currentElement.parentElement;
+		}
+		const index = currentElement.getAttribute("index");
+		return this.myLibrary[index];
+	}
+
+	showNewBookCard() {
+		for (let element of newBookElements) element.classList.remove("hidden");
+		editBookDiv.classList.add("hidden");
+	}
+
+	emojify(read) {
+		return read ? "✅" : "📖";
+	}
+
+	createNewBook(e) {
 		if (!newBookForm.checkValidity()) return;
 
 		const titleInp = document.querySelector("#title").value;
 		const authorInp = document.querySelector("#author").value;
 		const pagesInp = document.querySelector("#pages").value;
 		const readInp = document.querySelector("#read").checked;
-		const index = myLibrary.length;
+		const index = this.myLibrary.length;
 
 		newBook = Book(titleInp, authorInp, pagesInp, readInp, index);
-		myLibrary.push(newBook);
-		shelfDiv.append(createCard(newBook));
+		this.myLibrary.push(newBook);
+		shelfDiv.append(this.createCard(newBook));
 
 		newBookForm.reset();
 
@@ -50,7 +93,7 @@ const library = (function () {
 		e.preventDefault();
 	}
 
-	function initEditBookCard(e) {
+	initEditBookCard(e) {
 		// Don't show edit card if header card is clicked
 		if (
 			e.target.classList.contains("header") ||
@@ -59,42 +102,42 @@ const library = (function () {
 		)
 			return;
 
-		showEditBookCard();
+		this.showEditBookCard();
 
-		book = getBook(e);
-		editBookH1.textContent = book.title;
-		readCheckbox.checked = book.read === true;
+		this.book = this.getBook(e);
+		editBookH1.textContent = this.book.title;
+		readCheckbox.checked = this.book.read === true;
 
 		// Prevents clicking the doc & closing the new book card
 		e.stopPropagation();
 	}
 
-	function updateReadStatus(e) {
+	updateReadStatus(e) {
 		const checkboxVal = e.target.checked;
-		book.read = checkboxVal;
+		this.book.read = checkboxVal;
 
-		const card = document.querySelector(`[index="${book.index}"]`);
+		const card = document.querySelector(`[index="${this.book.index}"]`);
 		const cardStatus = card.children[0].children[3];
-		cardStatus.textContent = emojify(book.read);
+		cardStatus.textContent = this.emojify(this.book.read);
 	}
 
-	function deleteBook() {
+	deleteBook() {
 		// Popping the object will mess up index assignment on book instantiation
-		myLibrary[book.index] = [];
+		this.myLibrary[this.book.index] = [];
 
-		const card = document.querySelector(`[index="${book.index}"]`);
+		const card = document.querySelector(`[index="${this.book.index}"]`);
 		card.remove();
 
-		showNewBookCard();
+		this.showNewBookCard();
 	}
 
-	function createCard(book) {
+	createCard(book) {
 		const card = document.createElement("div");
 		const ul = document.createElement("ul");
-		const title = createListItem(book.title);
-		const author = createListItem(book.author);
-		const pages = createListItem(book.pages);
-		const read = createListItem(emojify(book.read));
+		const title = this.createListItem(book.title);
+		const author = this.createListItem(book.author);
+		const pages = this.createListItem(book.pages);
+		const read = this.createListItem(this.emojify(book.read));
 
 		card.append(title);
 		for (const li of [title, author, pages, read]) ul.append(li);
@@ -106,48 +149,13 @@ const library = (function () {
 
 		return card;
 	}
+}
 
-	function createListItem(content) {
-		const li = document.createElement("li");
-		li.textContent = content;
-		return li;
-	}
+const library = new Library();
 
-	function getBook(e) {
-		// Traverse up the DOM to get a specific card element
-		let currentElement = e.target;
-		while (!currentElement.classList.contains("card")) {
-			currentElement = currentElement.parentElement;
-		}
-		const index = currentElement.getAttribute("index");
-		return myLibrary[index];
-	}
-
-	function showEditBookCard() {
-		// Loop needed to edit h2, which is not nested within a shared div
-		for (let element of newBookElements) element.classList.add("hidden");
-		editBookDiv.classList.remove("hidden");
-	}
-
-	function showNewBookCard() {
-		for (let element of newBookElements) element.classList.remove("hidden");
-		editBookDiv.classList.add("hidden");
-	}
-
-	function emojify(read) {
-		return read ? "✅" : "📖";
-	}
-
-	// Create example book for display
-	myLibrary.push(
-		Book(
-			"Harry Potter and the Philosopher's Stone",
-			"J.K. Rowling",
-			223,
-			true,
-			0
-		)
-	);
-
-	return {};
-})();
+// Bind events
+document.addEventListener("click", library.showNewBookCard);
+newBookForm.addEventListener("submit", (e) => library.createNewBook(e));
+readCheckbox.addEventListener("click", (e) => library.updateReadStatus(e));
+deleteBtn.addEventListener("click", (e) => library.deleteBook(e));
+shelfDiv.addEventListener("click", (e) => library.initEditBookCard(e)); // When a card is selected
